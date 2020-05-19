@@ -1,0 +1,57 @@
+server:
+  connection-timeout: 20000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  mvc:
+    async:
+      request-timeout: 20000
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/dungps?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: none
+      jdbc:
+        batch_size: 50
+      order_inserts: true
+      order_updates: true
+      batch_versioned_data: true
+      generate_statistics: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: false
+        connection:
+          characterEncoding: utf-8
+          CharSet: utf-8
+          useUnicode: true
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        generate_statistics: false
+    show-sql: true
+
+---
+spring:
+  profiles: local
+
+---
+spring:
+  profiles: production
+

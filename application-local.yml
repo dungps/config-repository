@@ -1,0 +1,18 @@
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+zuul:
+  ssl-hostname-validation-enabled: false
+  prefix: /
+  routes:
+    api-user:
+      id: user-service
+      path: /users/**
+      url: http://localhost:1111

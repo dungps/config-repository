@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dungps?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      format_sql: false
+      connection:
+        characterEncoding: utf-8
+        CharSet: utf-8
+        useUnicode: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+      jdbc:
+        batch_size: 50
+      order_inserts: true
+      order_updates: true
+      batch_versioned_data: true
+      generate_statistics: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: false
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        generate_statistics: false
+    show-sql: false
+
+zuul:
+  ssl-hostname-validation-enabled: false
+  prefix: /
+  routes:
+    api-user:
+      id: user-service
+      path: /users/**
+      url: http://localhost:1111
